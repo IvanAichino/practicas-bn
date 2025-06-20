@@ -4,12 +4,16 @@ on:
   push:
     branches: main
 
+concurrency:
+      group: example-group-${{github.ref}}
+      cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    concurrency:
-      group: example-group
-      cancel-in-progress: true
+    # concurrency:
+    #   group: example-group
+    #   cancel-in-progress: true
 
     steps:
       - name: Checkout
